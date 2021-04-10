@@ -4,12 +4,14 @@
   "parameters": {
     "existingVNETName": {
       "type": "string",
+      "defaultValue": "adVnet",
       "metadata": {
         "description": "Existing VNET that contains the domain controller"
       }
     },
     "existingSubnetName": {
       "type": "string",
+      "defaultValue": "adsubnet",
       "metadata": {
         "description": "Existing subnet that contains the domain controller"
       }
@@ -29,18 +31,20 @@
     },
     "domainToJoin": {
       "type": "string",
+      "defaultValue": "test.az",
       "metadata": {
         "description": "The FQDN of the AD domain"
       }
     },
     "domainUsername": {
       "type": "string",
+      "defaultValue": "tom",
       "metadata": {
         "description": "Username of the account on the domain"
       }
     },
     "domainPassword": {
-      "type": "string",
+      "type": "securestring",
       "metadata": {
         "description": "Password of the account on the domain"
       }
@@ -61,6 +65,7 @@
     },
     "vmAdminUsername": {
       "type": "string",
+      "defaultValue": "tom",
       "metadata": {
         "description": "The name of the administrator of the new VM and the domain. Exclusion list: 'admin','administrator'"
       }
@@ -76,9 +81,9 @@
     "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'domainjoin')]",
     "imagePublisher": "MicrosoftWindowsServer",
     "imageOffer": "WindowsServer",
-    "windowsOSVersion": "2012-R2-Datacenter",
+    "windowsOSVersion": "2019-Datacenter",
     "vmName": "domainJoinedVM",
-    "apiVersion": "2015-06-15",
+    "apiVersion": "2019-12-01",
     "nicName": "domainJoinNIC",
     "publicIPName": "domainJoinPip",
     "vnetID": "[resourceId(resourceGroup().name, 'Microsoft.Network/virtualNetworks', parameters('existingVNETName'))]",
